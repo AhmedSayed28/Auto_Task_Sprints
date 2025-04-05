@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Luma Test Suite" verbose="2" configfailurepolicy="continue">
+
+    <!-- Listeners -->
+    <listeners>
+        <listener class-name="listeners.testng.TestNGListener"/>
+    </listeners>
+
+    <!-- Test Cases -->
+    <test name="Product Search Test" preserve-order="true">
+        <classes>
+            <class name="tests.ProductSearchTest">
+                <methods>
+                    <include name="verifyAllProductsContainSearchTerm"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Cart Operations Test" preserve-order="true">
+        <classes>
+            <class name="tests.AddToCartTest">
+                <methods>
+                    <include name="verifyProductAddedToCartSuccessfully"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Checkout Process Test" preserve-order="true">
+        <classes>
+            <class name="tests.CheckoutProcessTest">
+                <methods>
+                    <include name="verifyCompleteCheckoutProcess"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

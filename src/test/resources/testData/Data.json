@@ -1,0 +1,19 @@
+{
+  "search": {
+    "query": "Hoodie"
+  },
+  "product": {
+    "size": "M"
+  },
+  "checkout": {
+    "email": "test.user@example.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "address": "123 Main Street",
+    "city": "New York",
+    "zip": "10001",
+    "country": "United States",
+    "phone": "1234567890",
+    "successMSG": "Thank you for your purchase!"
+  }
+}
