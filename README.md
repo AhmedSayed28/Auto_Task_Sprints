@@ -62,7 +62,7 @@ Auto_Task_Sprints/
 
 | Test Case | Description | Key Validations |
 | --- | --- | --- |
-| `ProductSearchTest` | Search for "Hoodie" | Products contain "Hoodie" in name |
+| `ProductSearchTest` | Search for "Hoodie" | Products contain "Hoodie" in name if not it will search in the description in the product details |
 | `AddToCartTest` | Add product to cart | Cart quantity updates correctly |
 | `CheckoutProcessTest` | Complete checkout with test data | Order confirmation message appears |
 
