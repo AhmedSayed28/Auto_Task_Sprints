@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +18,7 @@ public class HoodiesAndSweatShirtsMenPage {
 
     // Locators
     private final By searchInput = By.id("search");
+    private final By productDescription = By.id("description");
     private final By productLinks = By.cssSelector("strong a.product-item-link");
     private final By productLimiterSelect = By.xpath("(//select[@id='limiter'])[2]");
     private final By firstProductCard = By.xpath("//li[@class=\"item product product-item\"][1]");
@@ -50,10 +53,38 @@ public class HoodiesAndSweatShirtsMenPage {
     private List<String> getProductsNotContaining(String searchText) {
         List<WebElement> products = driver.get().findElements(productLinks);
 
-        return products.stream()
-                .map(WebElement::getText)
-                .filter(name -> !name.toLowerCase().contains(searchText.toLowerCase()))
-                .collect(Collectors.toList());
+        List<String> nonMatchingProducts = new ArrayList<>();
+        String searchLower = searchText.toLowerCase();
+
+        for (int i = 0; i < products.size(); i++) {
+            WebElement product = products.get(i);
+            String productName = product.getText().toLowerCase();
+
+            if (!productName.contains(searchLower)) {
+                try {
+                    // Click on product to check description
+                    product.click();
+
+                    String description = driver.element().getTextOf(productDescription).toLowerCase();
+                    if (!description.contains(searchLower)) {
+                        nonMatchingProducts.add(productName);
+                    }
+
+                    // Navigate back and re-find elements
+                    driver.browser().navigateBack();
+                    products = driver.get().findElements(productLinks); // Re-find elements after navigation
+                    i--; // Reset counter after page reload
+                } catch (Exception e) {
+                    System.err.println("Error checking product: " + productName);
+                    e.printStackTrace();
+                    // Continue with next product if error occurs
+                    driver.browser().navigateBack();
+        }
+        return nonMatchingProducts;
+    }
+        }
+
+        return nonMatchingProducts;
     }
 
     public HoodiesAndSweatShirtsMenPage selectFirstProduct(){

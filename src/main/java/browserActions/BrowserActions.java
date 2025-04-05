@@ -18,7 +18,10 @@ public class BrowserActions {
         return this;
     }
 
-
+    public BrowserActions navigateBack() {
+        driver.navigate().back();
+        return this;
+    }
 
     public BrowserActions deleteAllCookies() {
         driver.manage().deleteAllCookies();
