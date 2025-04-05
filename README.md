@@ -1,84 +1,135 @@
-# Matgry
+# 🛒 Luma E-Commerce Test Automation Framework
 
-This repository contains automated test cases for the Matgry website. The test cases cover various scenarios.
+![Version](https://img.shields.io/badge/version-1.0-blue.svg)
+![Java](https://img.shields.io/badge/Java-11%2B-orange)
+![Selenium](https://img.shields.io/badge/Selenium-4%2B-brightgreen)
+![License](https://img.shields.io/badge/license-Internal--Use--Only-lightgrey)
+![Build](https://img.shields.io/badge/build-passing-brightgreen)
+![Maintained](https://img.shields.io/badge/maintained-yes-success)
 
-## Prerequisites
+> **Author:** Ahmed Ghaly 
+> **Company:** Sprint  
+---
 
-To run these test cases, ensure the following tools and dependencies are installed:
+## 📌 Overview
 
-- **Selenium WebDriver** (for browser automation)
-- **Java** (depending on the language you are using)
-- **Maven/NPM** (for managing dependencies)
-- **TestNG** (for running the test cases)
-- **Browser**: Chrome (based on current settings)
+This is an basic Selenium WebDriver + TestNG automation framework built to test the [Luma E-Commerce Website](https://magento.softwaretestingboard.com/). It follows the **Page Object Model (POM)** design pattern and includes:
 
+- ✅ End-to-End Test Cases (Search, Add to Cart, Checkout)
+- ✅ Scalable structure for future test scenarios
+- ✅ Automated Reporting & Screenshots
+- ✅ Data-Driven Testing using JSON
 
+---
 
-## Setup
+## 🛠️ Tech Stack
 
-1. Clone this repository to your local machine:
-   ```bash
-   git clone https://github.com/...
-   ```
-2. Install the required dependencies:
-   ```bash
-   npm install / mvn install
-   ```
-3. Configure the browser settings in the properties file:
-   - **BrowserType**: CHROME
-   - **HeadlessMode**: false
-   - **BaseURL**: `https://...`
+| Category          | Technology                | Purpose                            |
+|-------------------|---------------------------|-------------------------------------|
+| Core Framework    | Java + TestNG             | Test execution & assertions         |
+| Browser Automation| Selenium WebDriver 4+     | Web interactions                    |
+| Build Tool        | Maven                     | Dependency management               |
+| Reporting         | TestNG + Custom Listener  | Execution logs & screenshots        |
 
-## Running the Tests
+---
 
-### Running Selenium Tests
+## 📂 Project Structure
 
-To execute all test cases, use the following command:
 ```bash
-npm test / mvn test
-```
+Auto_Task_Sprints/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   ├── browserActions/       # Selenium action wrappers
+│   │   │   ├── driverFactory/        # WebDriver initialization
+│   │   │   ├── elementActions/       # Custom element methods
+│   │   │   ├── listeners/            # TestNG listeners
+│   │   │   ├── pages/                # Page Objects
+│   │   │   └── utilities/            # Helpers (e.g., ScreenshotManager)
+│   │   └── resources/                # Config files (if any)
+│   └── test/
+│       ├── java/
+│       │   └── tests/                # Test classes
+│       └── resources/
+│           └── testData/             # Data.json
+├── testng.xml                        # TestNG suite file
+└── pom.xml                           # Maven configuration
 
-You can also run individual test cases by specifying the test case file.
+* * *
 
+🚀 Test Cases Covered
+---------------------
 
-## Project Structure
+| Test Case | Description | Key Validations |
+| --- | --- | --- |
+| `ProductSearchTest` | Search for "Hoodie" | Products contain "Hoodie" in name |
+| `AddToCartTest` | Add product to cart | Cart quantity updates correctly |
+| `CheckoutProcessTest` | Complete checkout with test data | Order confirmation message appears |
 
-This project follows a structured layout for better modularity and clarity:
+* * *
 
-```
-Matgry
-│
-├── main
-│   └── java
-│       ├── browserActions          # Handles browser-specific actions
-│       ├── driverFactory           # Sets up WebDriver configurations
-│       ├── elementActions          # Methods for interacting with web elements
-│       ├── listeners               # Test listeners for reporting/logging
-│       ├── pages                   # Page Object Model (POM) classes for web pages
-│       └── utilities               # Utility classes for reusable methods
-│
-├── resources
-│   ├── Reporting.properties        # Reporting configuration settings
-│   └── WebConfigurations.properties # WebDriver and browser settings
-│
-├── test
-    └── java
-        └── tests                   # Test classes for each test case
-     
-            
-### Explanation:
+⚙️ Setup & Execution
+--------------------
 
-- **browserActions**: Handles browser-level actions like opening and closing.
-  
-- **driverFactory**: Configures and initializes the WebDriver.
+### 🔧 Prerequisites
 
-- **elementActions**: Contains methods to interact with web elements like click, type, select, etc.
+*   Java 11+
+    
+*   Maven 3.8+
+    
+*   Chrome or Firefox browser
+    
 
-- **listeners**: Tracks test execution, logs information, and handles reporting.
+### 📥 1. Clone & Install
 
-- **pages**: POM classes representing different pages of the Automation Exercise website.
+bash
 
-- **utilities**: Contains utility methods used across different classes.
+`git clone [ https://github.com/AhmedSayed28/SprintsTask.git  ] cd Auto_Task_Sprints mvn clean install`
 
-- **resources**: Includes property files for configuration settings related to WebDriver and reporting.
+### ▶️ 2. Run Tests
 
+**Option 1: Run all tests**
+
+bash
+
+`mvn test`
+
+**Option 2: Run specific test group**
+
+bash
+
+`mvn test -Dgroups=smoke`
+
+**Option 3: Run via `testng.xml` in your IDE**
+
+* * *
+
+📊 Reporting
+------------
+
+*   **Basic TestNG Reports (As Asked)
+    
+*   **Screenshots (on failure):** `target/screenshots/`
+    
+*   **Custom Logs:** via `TestNGListener`
+    
+* * *
+
+🧠 Best Practices Followed
+--------------------------
+
+*   ✔ Page Object Model (POM)
+    
+*   ✔ Data-Driven Testing using JSON
+    
+*   ✔ Soft Assertions
+    
+*   ✔ Auto-Retry for flaky tests (if configured)
+    
+
+* * *
+
+💬 Need Help?
+-------------
+
+**Contact:** qa.ahmedsayed@gmail.com or 01115081316 
